@@ -53,10 +53,11 @@ public class Programa extends JFrame {
         arquivos.add(sairArquivos);
         barraDoMenu.add(arquivos);
 
+        Transformacoes transformacao = new Transformacoes();
 
         JMenu transformacoes = new JMenu("Transformações Geométricas");
         JMenuItem transladarTrans = new JMenuItem("Transladar");
-        transladarTrans.addActionListener(e -> transladarImagem());
+        transladarTrans.addActionListener(e -> transformacao.transladarImagem(labelOriginal,labelTransformado));
 
         JMenuItem rotacionarTrans = new JMenuItem("Rotacionar");
         JMenuItem espelharTrans = new JMenuItem("Espelhar");
@@ -140,8 +141,5 @@ public class Programa extends JFrame {
             System.exit(0);
         }
     }
-
-    private void transladarImagem() {
-
-    }
+    
 }
