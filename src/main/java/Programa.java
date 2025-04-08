@@ -15,18 +15,17 @@ public class Programa extends JFrame {
 
     public Programa() {
 
-        JFrame jFrame = new JFrame("Programa de Processamento de Imagens");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JLabel label = new JLabel("Iago Mauri");
 
-        labelOriginal = new JLabel("Imagem Original");
+        labelOriginal = new JLabel();
         labelOriginal.setPreferredSize(new Dimension(400, 300));
         painelDeImagens.add(labelOriginal);
 
-        labelTransformado = new JLabel("Imagem Transformada");
+        labelTransformado = new JLabel();
         labelTransformado.setPreferredSize(new Dimension(400, 300));
         painelDeImagens.add(labelTransformado);
 
@@ -46,7 +45,6 @@ public class Programa extends JFrame {
         JMenuItem sairArquivos = new JMenuItem("Sair");
         sairArquivos.addActionListener(e -> sairSistema());
 
-        //ADICIONANDO OS ITENS NO MENU
         arquivos.add(abrirArquivos);
         arquivos.add(salvarArquivos);
         arquivos.add(sobreArquivos);
@@ -56,19 +54,48 @@ public class Programa extends JFrame {
         Transformacoes transformacao = new Transformacoes();
 
         JMenu transformacoes = new JMenu("Transformações Geométricas");
+
         JMenuItem transladarTrans = new JMenuItem("Transladar");
         transladarTrans.addActionListener(e -> transformacao.transladarImagem(labelOriginal,labelTransformado));
 
         JMenuItem rotacionarTrans = new JMenuItem("Rotacionar");
+        rotacionarTrans.addActionListener(e -> transformacao.rotacionaImagem(labelOriginal,labelTransformado));
+
         JMenuItem espelharTrans = new JMenuItem("Espelhar");
-        JMenuItem aumentarTrans = new JMenuItem("Aumentar");
-        JMenuItem diminuirTrans = new JMenuItem("Diminuir");
+        espelharTrans.addActionListener(e -> transformacao.espelharImagem(labelOriginal,labelTransformado));
+
+        JMenuItem aumentarTrans = new JMenuItem("Aumentar/Diminuir");
+        aumentarTrans.addActionListener(e -> transformacao.escalarImagem(labelOriginal,labelTransformado));        
+       
         transformacoes.add(transladarTrans);
         transformacoes.add(rotacionarTrans);
         transformacoes.add(espelharTrans);
         transformacoes.add(aumentarTrans);
-        transformacoes.add(diminuirTrans);
         barraDoMenu.add(transformacoes);
+
+
+        
+        Filtros filtro = new Filtros();
+
+        JMenu filtros = new JMenu("Filtros");
+
+        JMenuItem filtroGrayscale = new JMenuItem("Grayscale");
+        filtroGrayscale.addActionListener(e -> filtro.aplicaGrayscale(labelOriginal,labelTransformado));
+
+        /*JMenuItem rotacionarTrans = new JMenuItem("Rotacionar");
+        rotacionarTrans.addActionListener(e -> transformacao.rotacionaImagem(labelOriginal,labelTransformado));
+
+        JMenuItem espelharTrans = new JMenuItem("Espelhar");
+        espelharTrans.addActionListener(e -> transformacao.espelharImagem(labelOriginal,labelTransformado));
+
+        JMenuItem aumentarTrans = new JMenuItem("Aumentar/Diminuir");
+        aumentarTrans.addActionListener(e -> transformacao.escalarImagem(labelOriginal,labelTransformado));        */
+       
+        filtros.add(filtroGrayscale);
+        //filtros.add(rotacionarTrans);
+        //filtros.add(espelharTrans);
+        //filtros.add(aumentarTrans);
+        barraDoMenu.add(filtros);
 
 
         setJMenuBar(barraDoMenu);
