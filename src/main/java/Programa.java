@@ -19,7 +19,7 @@ public class Programa extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JLabel label = new JLabel("Iago Mauri");
+        JLabel label = new JLabel("Iago Mauri e João Tonin");
 
         labelOriginal = new JLabel();
         labelOriginal.setPreferredSize(new Dimension(400, 300));
@@ -82,18 +82,18 @@ public class Programa extends JFrame {
         JMenuItem filtroGrayscale = new JMenuItem("Grayscale");
         filtroGrayscale.addActionListener(e -> filtro.aplicaGrayscale(labelOriginal,labelTransformado));
 
-        /*JMenuItem rotacionarTrans = new JMenuItem("Rotacionar");
-        rotacionarTrans.addActionListener(e -> transformacao.rotacionaImagem(labelOriginal,labelTransformado));
+        JMenuItem filtroPassaBaixa = new JMenuItem("Passa Baixa");
+        filtroPassaBaixa.addActionListener(e -> filtro.passaBaixa(labelOriginal,labelTransformado));
 
-        JMenuItem espelharTrans = new JMenuItem("Espelhar");
-        espelharTrans.addActionListener(e -> transformacao.espelharImagem(labelOriginal,labelTransformado));
+        JMenuItem filtroPassaAlta = new JMenuItem("Passa Alta");
+        filtroPassaAlta.addActionListener(e -> filtro.passaAlta(labelOriginal,labelTransformado));
 
-        JMenuItem aumentarTrans = new JMenuItem("Aumentar/Diminuir");
+        /* JMenuItem aumentarTrans = new JMenuItem("Aumentar/Diminuir");
         aumentarTrans.addActionListener(e -> transformacao.escalarImagem(labelOriginal,labelTransformado));        */
        
         filtros.add(filtroGrayscale);
-        //filtros.add(rotacionarTrans);
-        //filtros.add(espelharTrans);
+        filtros.add(filtroPassaBaixa);
+        filtros.add(filtroPassaAlta);
         //filtros.add(aumentarTrans);
         barraDoMenu.add(filtros);
 

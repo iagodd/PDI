@@ -172,9 +172,9 @@ import java.lang.Math;
                     for (int x = 0; x < largura; x++) {
                         int cor = bufferedImage.getRGB(x, y);
         
-                        if (escolha == 0) { // Horizontal
+                        if (escolha == 0) {
                             novaImagem.setRGB(largura - 1 - x, y, cor);
-                        } else { // Vertical
+                        } else { 
                             novaImagem.setRGB(x, altura - 1 - y, cor);
                         }
                     }
