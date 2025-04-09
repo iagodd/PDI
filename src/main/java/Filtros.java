@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Filtros {
 
-    public void aplicaGrayscale(JLabel labelOriginal, JLabel labelTransformado) {
+    public void aplicaGrayscale(JLabel labelOriginal, JLabel labelTransformado, BufferedImage imagemOriginalImportada) {
         if (labelOriginal.getIcon() != null) {
             ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
             Image img = originalIcon.getImage();
@@ -42,17 +42,22 @@ public class Filtros {
             labelTransformado.setIcon(new ImageIcon(novaImagem));
 
             int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
-                if (resposta == JOptionPane.YES_OPTION) {
-                    labelOriginal.setIcon(new ImageIcon(novaImagem));
-                    labelTransformado.setIcon(null); 
+            if (resposta == JOptionPane.YES_OPTION) {
+                labelOriginal.setIcon(new ImageIcon(novaImagem));
+                labelTransformado.setIcon(null);
+            } else {
+                if (imagemOriginalImportada != null) {
+                    Image imgOriginal = imagemOriginalImportada.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+                    labelOriginal.setIcon(new ImageIcon(imgOriginal));
                 }
+            }
         }
         else
             JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
     }
     
 
-    public void passaBaixa(JLabel labelOriginal, JLabel labelTransformado) {
+    public void passaBaixa(JLabel labelOriginal, JLabel labelTransformado, BufferedImage imagemOriginalImportada) {
         if (labelOriginal.getIcon() != null) {
             ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
             Image img = originalIcon.getImage();
@@ -103,16 +108,21 @@ public class Filtros {
             labelTransformado.setIcon(new ImageIcon(novaImagem));
 
             int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
-                if (resposta == JOptionPane.YES_OPTION) {
-                    labelOriginal.setIcon(new ImageIcon(novaImagem));
-                    labelTransformado.setIcon(null); 
+            if (resposta == JOptionPane.YES_OPTION) {
+                labelOriginal.setIcon(new ImageIcon(novaImagem));
+                labelTransformado.setIcon(null);
+            } else {
+                if (imagemOriginalImportada != null) {
+                    Image imgOriginal = imagemOriginalImportada.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+                    labelOriginal.setIcon(new ImageIcon(imgOriginal));
                 }
+            }
         }
         else
             JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
     }
     
-    public void passaAlta(JLabel labelOriginal, JLabel labelTransformado) {
+    public void passaAlta(JLabel labelOriginal, JLabel labelTransformado, BufferedImage imagemOriginalImportada) {
         if (labelOriginal.getIcon() != null) {
             ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
             Image img = originalIcon.getImage();
@@ -171,17 +181,22 @@ public class Filtros {
             labelTransformado.setIcon(new ImageIcon(novaImagem));
 
             int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
-                if (resposta == JOptionPane.YES_OPTION) {
-                    labelOriginal.setIcon(new ImageIcon(novaImagem));
-                    labelTransformado.setIcon(null); 
+            if (resposta == JOptionPane.YES_OPTION) {
+                labelOriginal.setIcon(new ImageIcon(novaImagem));
+                labelTransformado.setIcon(null);
+            } else {
+                if (imagemOriginalImportada != null) {
+                    Image imgOriginal = imagemOriginalImportada.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+                    labelOriginal.setIcon(new ImageIcon(imgOriginal));
                 }
+            }
         }
         else
         JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
 
-    public void aplicaThreshold(JLabel labelOriginal, JLabel labelTransformado) {
+    public void aplicaThreshold(JLabel labelOriginal, JLabel labelTransformado, BufferedImage imagemOriginalImportada) {
         if (labelOriginal.getIcon() != null) {
             ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
             Image img = originalIcon.getImage();
@@ -237,10 +252,15 @@ public class Filtros {
             labelTransformado.setIcon(new ImageIcon(novaImagem));
 
             int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
-                if (resposta == JOptionPane.YES_OPTION) {
-                    labelOriginal.setIcon(new ImageIcon(novaImagem));
-                    labelTransformado.setIcon(null); 
+            if (resposta == JOptionPane.YES_OPTION) {
+                labelOriginal.setIcon(new ImageIcon(novaImagem));
+                labelTransformado.setIcon(null);
+            } else {
+                if (imagemOriginalImportada != null) {
+                    Image imgOriginal = imagemOriginalImportada.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+                    labelOriginal.setIcon(new ImageIcon(imgOriginal));
                 }
+            }
         }
         else
         JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);

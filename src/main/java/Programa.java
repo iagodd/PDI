@@ -10,6 +10,7 @@ public class Programa extends JFrame {
 
     private JLabel labelOriginal;
     private JLabel labelTransformado;
+    private BufferedImage imagemOriginalImportada;
     JPanel painel = new JPanel();
     JPanel painelDeImagens = new JPanel(new GridLayout(1, 2));
 
@@ -67,16 +68,16 @@ public class Programa extends JFrame {
         JMenu transformacoes = new JMenu("Transformações Geométricas");
     
         JMenuItem transladarTrans = new JMenuItem("Transladar");
-        transladarTrans.addActionListener(e -> transformacao.transladarImagem(labelOriginal, labelTransformado));
+        transladarTrans.addActionListener(e -> transformacao.transladarImagem(labelOriginal, labelTransformado, imagemOriginalImportada));
     
         JMenuItem rotacionarTrans = new JMenuItem("Rotacionar");
-        rotacionarTrans.addActionListener(e -> transformacao.rotacionaImagem(labelOriginal, labelTransformado));
+        rotacionarTrans.addActionListener(e -> transformacao.rotacionaImagem(labelOriginal, labelTransformado, imagemOriginalImportada));
     
         JMenuItem espelharTrans = new JMenuItem("Espelhar");
-        espelharTrans.addActionListener(e -> transformacao.espelharImagem(labelOriginal, labelTransformado));
+        espelharTrans.addActionListener(e -> transformacao.espelharImagem(labelOriginal, labelTransformado, imagemOriginalImportada));
     
         JMenuItem aumentarTrans = new JMenuItem("Aumentar/Diminuir");
-        aumentarTrans.addActionListener(e -> transformacao.escalarImagem(labelOriginal, labelTransformado));
+        aumentarTrans.addActionListener(e -> transformacao.escalarImagem(labelOriginal, labelTransformado, imagemOriginalImportada));
     
         transformacoes.add(transladarTrans);
         transformacoes.add(rotacionarTrans);
@@ -89,16 +90,16 @@ public class Programa extends JFrame {
         JMenu filtros = new JMenu("Filtros");
     
         JMenuItem filtroGrayscale = new JMenuItem("Grayscale");
-        filtroGrayscale.addActionListener(e -> filtro.aplicaGrayscale(labelOriginal, labelTransformado));
+        filtroGrayscale.addActionListener(e -> filtro.aplicaGrayscale(labelOriginal, labelTransformado, imagemOriginalImportada));
     
         JMenuItem filtroPassaBaixa = new JMenuItem("Passa Baixa");
-        filtroPassaBaixa.addActionListener(e -> filtro.passaBaixa(labelOriginal, labelTransformado));
+        filtroPassaBaixa.addActionListener(e -> filtro.passaBaixa(labelOriginal, labelTransformado, imagemOriginalImportada));
     
         JMenuItem filtroPassaAlta = new JMenuItem("Passa Alta");
-        filtroPassaAlta.addActionListener(e -> filtro.passaAlta(labelOriginal, labelTransformado));
+        filtroPassaAlta.addActionListener(e -> filtro.passaAlta(labelOriginal, labelTransformado, imagemOriginalImportada));
     
         JMenuItem filtroThreshold = new JMenuItem("Threshold");
-        filtroThreshold.addActionListener(e -> filtro.aplicaThreshold(labelOriginal, labelTransformado));
+        filtroThreshold.addActionListener(e -> filtro.aplicaThreshold(labelOriginal, labelTransformado, imagemOriginalImportada));
     
         filtros.add(filtroGrayscale);
         filtros.add(filtroPassaBaixa);
@@ -137,7 +138,9 @@ public class Programa extends JFrame {
                 conteudo = new ImageIcon(caminhoDoArquivo);
                 Image img = conteudo.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
                 labelOriginal.setIcon(new ImageIcon(img));
-            } else {
+                imagemOriginalImportada = ImageIO.read(caminho);
+            } 
+            else {
                 jFileChooser.cancelSelection();
             }
         } catch (Exception e) {

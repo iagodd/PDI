@@ -6,7 +6,7 @@ import java.lang.Math;
     
      public class Transformacoes {
 
-        public void transladarImagem(JLabel labelOriginal, JLabel labelTransformado) {
+        public void transladarImagem(JLabel labelOriginal, JLabel labelTransformado, BufferedImage imagemOriginalImportada) {
             if (labelOriginal.getIcon() != null) {
                 ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
                 Image img = originalIcon.getImage();
@@ -59,16 +59,20 @@ import java.lang.Math;
 
                 int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
                 if (resposta == JOptionPane.YES_OPTION) {
-                    labelOriginal.setIcon(new ImageIcon(novaImagem));
-                    labelTransformado.setIcon(null); 
+                    labelOriginal.setIcon(new ImageIcon(imgEscalada));
+                    labelTransformado.setIcon(null);
+                } else {
+                    if (imagemOriginalImportada != null) {
+                        Image imgOriginal = imagemOriginalImportada.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+                        labelOriginal.setIcon(new ImageIcon(imgOriginal));
+                    }
                 }
-            }
-            else
+            } else
             JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
 
-        public void rotacionaImagem(JLabel labelOriginal, JLabel labelTransformado) {
+        public void rotacionaImagem(JLabel labelOriginal, JLabel labelTransformado, BufferedImage imagemOriginalImportada) {
             if (labelOriginal.getIcon() != null) {
                 ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
                 Image img = originalIcon.getImage();
@@ -140,16 +144,20 @@ import java.lang.Math;
 
                 int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
                 if (resposta == JOptionPane.YES_OPTION) {
-                    labelOriginal.setIcon(new ImageIcon(novaImagem));
-                    labelTransformado.setIcon(null); 
+                    labelOriginal.setIcon(new ImageIcon(imgEscalada));
+                    labelTransformado.setIcon(null);
+                } else {
+                    if (imagemOriginalImportada != null) {
+                        Image imgOriginal = imagemOriginalImportada.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+                        labelOriginal.setIcon(new ImageIcon(imgOriginal));
+                    }
                 }
-            }
-            else
+            } else
             JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
 
-        public void espelharImagem(JLabel labelOriginal, JLabel labelTransformado) {
+        public void espelharImagem(JLabel labelOriginal, JLabel labelTransformado, BufferedImage imagemOriginalImportada) {
             if (labelOriginal.getIcon() != null) {
                 ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
                 Image img = originalIcon.getImage();
@@ -197,15 +205,20 @@ import java.lang.Math;
 
                 int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
                 if (resposta == JOptionPane.YES_OPTION) {
-                    labelOriginal.setIcon(new ImageIcon(novaImagem)); // define o transformado como final
+                    labelOriginal.setIcon(new ImageIcon(imgEscalada));
                     labelTransformado.setIcon(null);
+                } else {
+                    if (imagemOriginalImportada != null) {
+                        Image imgOriginal = imagemOriginalImportada.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+                        labelOriginal.setIcon(new ImageIcon(imgOriginal));
+                    }
                 }
             }
             else
             JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
-        public void escalarImagem(JLabel labelOriginal, JLabel labelTransformado) {
+        public void escalarImagem(JLabel labelOriginal, JLabel labelTransformado, BufferedImage imagemOriginalImportada) {
             if (labelOriginal.getIcon() != null) {
                 ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
                 Image img = originalIcon.getImage();
@@ -263,8 +276,13 @@ import java.lang.Math;
 
                 int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem", "Finalizar?", JOptionPane.YES_NO_OPTION);
                 if (resposta == JOptionPane.YES_OPTION) {
-                    labelOriginal.setIcon(new ImageIcon(novaImagem));
-                    labelTransformado.setIcon(null); 
+                    labelOriginal.setIcon(new ImageIcon(imgEscalada));
+                    labelTransformado.setIcon(null);
+                } else {
+                    if (imagemOriginalImportada != null) {
+                        Image imgOriginal = imagemOriginalImportada.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+                        labelOriginal.setIcon(new ImageIcon(imgOriginal));
+                    }
                 }
             }
             else
