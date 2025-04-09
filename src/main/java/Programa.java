@@ -14,96 +14,104 @@ public class Programa extends JFrame {
     JPanel painelDeImagens = new JPanel(new GridLayout(1, 2));
 
     public Programa() {
-
-        setSize(800, 600);
+        setTitle("Programa de Processamento de Imagens");
+        setSize(1000, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
+    
         JLabel label = new JLabel("Iago Mauri e João Tonin");
-
+    
+        painelDeImagens = new JPanel(new GridBagLayout());
+    
         labelOriginal = new JLabel();
         labelOriginal.setPreferredSize(new Dimension(400, 300));
-        painelDeImagens.add(labelOriginal);
-
+        labelOriginal.setHorizontalAlignment(JLabel.CENTER);
+    
         labelTransformado = new JLabel();
         labelTransformado.setPreferredSize(new Dimension(400, 300));
-        painelDeImagens.add(labelTransformado);
-
-
+        labelTransformado.setHorizontalAlignment(JLabel.CENTER);
+    
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 20, 10, 20);
+        gbc.gridy = 0;
+    
+        gbc.gridx = 0;
+        painelDeImagens.add(labelOriginal, gbc);
+    
+        gbc.gridx = 1;
+        painelDeImagens.add(labelTransformado, gbc);
+    
         JMenuBar barraDoMenu = new JMenuBar();
-
+    
         JMenu arquivos = new JMenu("Arquivos");
         JMenuItem abrirArquivos = new JMenuItem("Abrir");
         abrirArquivos.addActionListener(e -> selectFile());
-
+    
         JMenuItem salvarArquivos = new JMenuItem("Salvar");
         salvarArquivos.addActionListener(e -> salvarProjeto());
-
+    
         JMenuItem sobreArquivos = new JMenuItem("Sobre");
         sobreArquivos.addActionListener(e -> sobreArq());
-
+    
         JMenuItem sairArquivos = new JMenuItem("Sair");
         sairArquivos.addActionListener(e -> sairSistema());
-
+    
         arquivos.add(abrirArquivos);
         arquivos.add(salvarArquivos);
         arquivos.add(sobreArquivos);
         arquivos.add(sairArquivos);
         barraDoMenu.add(arquivos);
-
+    
         Transformacoes transformacao = new Transformacoes();
-
+    
         JMenu transformacoes = new JMenu("Transformações Geométricas");
-
+    
         JMenuItem transladarTrans = new JMenuItem("Transladar");
-        transladarTrans.addActionListener(e -> transformacao.transladarImagem(labelOriginal,labelTransformado));
-
+        transladarTrans.addActionListener(e -> transformacao.transladarImagem(labelOriginal, labelTransformado));
+    
         JMenuItem rotacionarTrans = new JMenuItem("Rotacionar");
-        rotacionarTrans.addActionListener(e -> transformacao.rotacionaImagem(labelOriginal,labelTransformado));
-
+        rotacionarTrans.addActionListener(e -> transformacao.rotacionaImagem(labelOriginal, labelTransformado));
+    
         JMenuItem espelharTrans = new JMenuItem("Espelhar");
-        espelharTrans.addActionListener(e -> transformacao.espelharImagem(labelOriginal,labelTransformado));
-
+        espelharTrans.addActionListener(e -> transformacao.espelharImagem(labelOriginal, labelTransformado));
+    
         JMenuItem aumentarTrans = new JMenuItem("Aumentar/Diminuir");
-        aumentarTrans.addActionListener(e -> transformacao.escalarImagem(labelOriginal,labelTransformado));        
-       
+        aumentarTrans.addActionListener(e -> transformacao.escalarImagem(labelOriginal, labelTransformado));
+    
         transformacoes.add(transladarTrans);
         transformacoes.add(rotacionarTrans);
         transformacoes.add(espelharTrans);
         transformacoes.add(aumentarTrans);
         barraDoMenu.add(transformacoes);
-
-
-        
+    
         Filtros filtro = new Filtros();
-
+    
         JMenu filtros = new JMenu("Filtros");
-
+    
         JMenuItem filtroGrayscale = new JMenuItem("Grayscale");
-        filtroGrayscale.addActionListener(e -> filtro.aplicaGrayscale(labelOriginal,labelTransformado));
-
+        filtroGrayscale.addActionListener(e -> filtro.aplicaGrayscale(labelOriginal, labelTransformado));
+    
         JMenuItem filtroPassaBaixa = new JMenuItem("Passa Baixa");
-        filtroPassaBaixa.addActionListener(e -> filtro.passaBaixa(labelOriginal,labelTransformado));
-
+        filtroPassaBaixa.addActionListener(e -> filtro.passaBaixa(labelOriginal, labelTransformado));
+    
         JMenuItem filtroPassaAlta = new JMenuItem("Passa Alta");
-        filtroPassaAlta.addActionListener(e -> filtro.passaAlta(labelOriginal,labelTransformado));
-
+        filtroPassaAlta.addActionListener(e -> filtro.passaAlta(labelOriginal, labelTransformado));
+    
         JMenuItem filtroThreshold = new JMenuItem("Threshold");
-        filtroThreshold.addActionListener(e -> filtro.aplicaThreshold(labelOriginal,labelTransformado));
-       
+        filtroThreshold.addActionListener(e -> filtro.aplicaThreshold(labelOriginal, labelTransformado));
+    
         filtros.add(filtroGrayscale);
         filtros.add(filtroPassaBaixa);
         filtros.add(filtroPassaAlta);
         filtros.add(filtroThreshold);
         barraDoMenu.add(filtros);
-
-
+    
         setJMenuBar(barraDoMenu);
         painel.add(label);
         add(painel, BorderLayout.NORTH);
         add(painelDeImagens, BorderLayout.CENTER);
     }
-
+    
     private ImageIcon selectFile() {
         ImageIcon conteudo = null;
         File caminho = null;
@@ -171,7 +179,7 @@ public class Programa extends JFrame {
     }
 
     private void sobreArq() {
-        JOptionPane.showMessageDialog(null, "Versão 1.0 PDI System", "Sobre", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Versão 1.4.1 PDI System", "Sobre", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void sairSistema() {
