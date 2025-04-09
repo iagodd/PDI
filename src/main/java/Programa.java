@@ -88,13 +88,13 @@ public class Programa extends JFrame {
         JMenuItem filtroPassaAlta = new JMenuItem("Passa Alta");
         filtroPassaAlta.addActionListener(e -> filtro.passaAlta(labelOriginal,labelTransformado));
 
-        /* JMenuItem aumentarTrans = new JMenuItem("Aumentar/Diminuir");
-        aumentarTrans.addActionListener(e -> transformacao.escalarImagem(labelOriginal,labelTransformado));        */
+        JMenuItem filtroThreshold = new JMenuItem("Threshold");
+        filtroThreshold.addActionListener(e -> filtro.aplicaThreshold(labelOriginal,labelTransformado));
        
         filtros.add(filtroGrayscale);
         filtros.add(filtroPassaBaixa);
         filtros.add(filtroPassaAlta);
-        //filtros.add(aumentarTrans);
+        filtros.add(filtroThreshold);
         barraDoMenu.add(filtros);
 
 
@@ -108,25 +108,38 @@ public class Programa extends JFrame {
         ImageIcon conteudo = null;
         File caminho = null;
         String caminhoDoArquivo = null;
+    
         try {
             JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(
+                "Imagens (*.png, *.jpg, *.jpeg)", "png", "jpg", "jpeg"));
+    
             int ok = jFileChooser.showOpenDialog(null);
-
+    
             if (ok == JFileChooser.APPROVE_OPTION) {
                 caminho = jFileChooser.getSelectedFile();
                 caminhoDoArquivo = caminho.getAbsolutePath();
+    
+                String extensao = caminhoDoArquivo.substring(caminhoDoArquivo.lastIndexOf('.') + 1).toLowerCase();
+                if (!extensao.equals("png") && !extensao.equals("jpg") && !extensao.equals("jpeg")) {
+                    JOptionPane.showMessageDialog(null, "Formato de arquivo não suportado.\nUse PNG, JPG ou JPEG.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return null;
+                }
+    
                 conteudo = new ImageIcon(caminhoDoArquivo);
-                Image img = conteudo.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH); // Redimensiona a imagem
+                Image img = conteudo.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
                 labelOriginal.setIcon(new ImageIcon(img));
-                System.out.println(conteudo);
             } else {
                 jFileChooser.cancelSelection();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao carregar o arquivo.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
+    
         return conteudo;
     }
+    
 
     private void salvarProjeto() {
 

@@ -162,4 +162,64 @@ public class Filtros {
         JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
+
+    public void aplicaThreshold(JLabel labelOriginal, JLabel labelTransformado) {
+        if (labelOriginal.getIcon() != null) {
+            ImageIcon originalIcon = (ImageIcon) labelOriginal.getIcon();
+            Image img = originalIcon.getImage();
+    
+            BufferedImage bufferedImage = new BufferedImage(
+                img.getWidth(null),
+                img.getHeight(null),
+                BufferedImage.TYPE_INT_ARGB
+            );
+            Graphics2D g2d = bufferedImage.createGraphics();
+            g2d.drawImage(img, 0, 0, null);
+            g2d.dispose();
+    
+            int largura = bufferedImage.getWidth();
+            int altura = bufferedImage.getHeight();
+    
+            String input = JOptionPane.showInputDialog(null, "Digite o valor do threshold (0 a 255):", "Threshold", JOptionPane.QUESTION_MESSAGE);
+            if (input == null) return;
+    
+            int limiar;
+            try {
+                limiar = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Digite um número válido entre 0 e 255.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+    
+            if (limiar < 0 || limiar > 255) {
+                JOptionPane.showMessageDialog(null, "O valor deve estar entre 0 e 255.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+    
+            BufferedImage novaImagem = new BufferedImage(largura, altura, BufferedImage.TYPE_INT_ARGB);
+    
+            for (int y = 0; y < altura; y++) {
+                for (int x = 0; x < largura; x++) {
+                    int pixel = bufferedImage.getRGB(x, y);
+    
+                    int alpha = (pixel >> 24) & 0xff;
+                    int red   = (pixel >> 16) & 0xff;
+                    int green = (pixel >> 8) & 0xff;
+                    int blue  = pixel & 0xff;
+    
+                    int cinza = (int)(0.3 * red + 0.59 * green + 0.11 * blue);
+    
+                    int corFinal = (cinza >= limiar) ? 255 : 0;
+    
+                    int novoPixel = (alpha << 24) | (corFinal << 16) | (corFinal << 8) | corFinal;
+                    novaImagem.setRGB(x, y, novoPixel);
+                }
+            }
+    
+            labelTransformado.setIcon(new ImageIcon(novaImagem));
+        }
+        else
+        JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
 }
