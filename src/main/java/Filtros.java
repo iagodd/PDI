@@ -40,6 +40,12 @@ public class Filtros {
             }
     
             labelTransformado.setIcon(new ImageIcon(novaImagem));
+
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    labelOriginal.setIcon(new ImageIcon(novaImagem));
+                    labelTransformado.setIcon(null); 
+                }
         }
         else
             JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -95,6 +101,12 @@ public class Filtros {
                 }
             }
             labelTransformado.setIcon(new ImageIcon(novaImagem));
+
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    labelOriginal.setIcon(new ImageIcon(novaImagem));
+                    labelTransformado.setIcon(null); 
+                }
         }
         else
             JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -157,6 +169,12 @@ public class Filtros {
             }
     
             labelTransformado.setIcon(new ImageIcon(novaImagem));
+
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    labelOriginal.setIcon(new ImageIcon(novaImagem));
+                    labelTransformado.setIcon(null); 
+                }
         }
         else
         JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -217,6 +235,12 @@ public class Filtros {
             }
     
             labelTransformado.setIcon(new ImageIcon(novaImagem));
+
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja fazer mais alterações na imagem?", "Finalizar?", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    labelOriginal.setIcon(new ImageIcon(novaImagem));
+                    labelTransformado.setIcon(null); 
+                }
         }
         else
         JOptionPane.showMessageDialog(null, "Por favor, insira uma imagem primeiro", "Erro", JOptionPane.ERROR_MESSAGE);
